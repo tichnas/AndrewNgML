@@ -82,7 +82,8 @@ Theta2_grad /= m;
 Theta1_grad(:, 2:end) += lambda * Theta1(:, 2:end);
 Theta2_grad(:, 2:end) += lambda * Theta2(:, 2:end);
 
-
+regularize = @(theta) sum(sum(theta(:,2:end) .* theta(:,2:end)));
+J += lambda * (regularize(Theta1) + regularize(Theta2)) / (2 * m);
 
 
 
