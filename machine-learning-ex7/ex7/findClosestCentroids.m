@@ -21,6 +21,24 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+function dist = distance(xi, ci)
+  x = X(xi,:);
+  mu = centroids(ci,:);
+  diff = x - mu;
+  dist = sum(diff .* diff);
+end
+
+for i = 1:length(idx)
+  mini = 1;
+
+  for j = 2:K
+    if (distance(i, j) < distance(i, mini))
+      mini = j;
+    end
+  end
+  
+  idx(i) = mini;
+end
 
 
 
