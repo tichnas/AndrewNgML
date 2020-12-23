@@ -46,10 +46,12 @@ J += lambda * (sum((Theta .* Theta)(:)) + sum((X .* X)(:))) / 2;
 
 for i = 1:num_movies
   X_grad(i,:) = ((X(i,:) * Theta' - Y(i,:)) .* R(i,:)) * Theta;
+  X_grad(i,:) += lambda * X(i,:);
 end
 
 for j = 1:num_users
   Theta_grad(j,:) = ((Theta(j,:) * X' - Y'(j,:)) .* R'(j,:)) * X;
+  Theta_grad(j,:) += lambda * Theta(j,:);
 end
 
 
